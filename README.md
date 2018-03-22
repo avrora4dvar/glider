@@ -1,6 +1,6 @@
 # glider
 
-## Experiments
+## Experiment
 
 - Exp35: assimilating SST, HFR, SSH. 
 - Exp36: assimilating glider T,S
