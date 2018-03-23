@@ -16,7 +16,7 @@ The following experiments use Exp35_2389/NL as the forecast for their first wind
 
 The last window contains NL/Long with the continuation experiment after last forecast. 
 
-** Figure file combinations by figure number
+## Figure file combinations by figure number
 
 1. Matlab\surface\cal_layer.m - Python\plt1_map.py
 2. Matlab\wind\plt_wind_point.m Python\plt1_wind.m
@@ -36,7 +36,7 @@ The last window contains NL/Long with the continuation experiment after last for
 16. Matlab\article_glider\cal_pot_energy.m - Python\plt1_Epot_plot.py
 17. Matlab\article_glider\cal_pot_energy.m - Python\plt1_Epot_plot.py
 
-** Caveats
+## Caveats
 
 - For lon,lat-figures that sample the hourly output line 22 in Matlab/get_roms_layer needs to be set to 'true'. 
 For figures that use daily-averaged output it must be 'false'
