@@ -27,3 +27,4 @@
 For figures that use daily-averaged output it must be 'false'
 - For lon,z-figures that sample the hourly output line 64 in Matlab/get_roms_cross_zonal needs to be set to 'ocean_his'. 
 For figures that use daily-averaged output it must be 'ocean_avg'
+- Files need the Matlab SEAWATER and Matlab T_TIDE library as contained in the Matlab folder of the ROMS repository (https://www.myroms.org/). 
