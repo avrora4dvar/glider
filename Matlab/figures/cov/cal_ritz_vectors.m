@@ -3,7 +3,7 @@ clear all; clc;
 addpath('/home/server/student/homes/ipasmans/Matlab/figures/obslist'); 
 
 binDir='/home/aruba/vol2/ipasmans/Bin_Exp35'; 
-romsDir='/home/aruba/vol2/ipasmans/Exp/Exp35/Exp37_2395'; 
+romsDir='/home/aruba/vol2/ipasmans/Exp/Exp35/Exp35_2395'; 
 
 %% Find ritz vectors
 
@@ -32,11 +32,12 @@ end
 nVec=find(cumsum(ritzS)/sum(ritzS)<.9,1,'last');
 nVec=56;
 
+
 %% Convert from dual to primal
 
 outDir=fullfile(romsDir,'Ritz'); 
 %if exist(outDir,'dir'); unix(sprintf('rm -r %s',outDir)); end
-%mkdir(outDir); 
+mkdir(outDir); 
 
 %Background
 if ~exist(fullfile(romsDir,'Iter0','back.nc'),'file')
@@ -47,7 +48,7 @@ if ~exist(fullfile(romsDir,'Iter0','back.nc'),'file')
         binDir,fileIn,fileOut));
 end
 
-for k=47:nVec
+for k=1:nVec
    outDir=fullfile(romsDir,'Ritz',sprintf('Member_%-.3d',k)); 
    if ~exist(outDir,'dir'); mkdir(outDir); end
    
@@ -71,7 +72,7 @@ for k=47:nVec
    
    %Wait
    while true
-       if mod(k-46,4)~=0 && k<nVec; break; end
+       if mod(k,4)~=0 && k<nVec; break; end
        flag_go=1;   
        for l=k:-1:1
            fname=fullfile(romsDir,'Ritz',sprintf('Member_%-.3d',l),'ad_interp.out');
@@ -89,7 +90,7 @@ for k=47:nVec
    
 end
 
-for k=47:nVec
+for k=1:nVec
     outDir=fullfile(romsDir,'Ritz',sprintf('Member_%-.3d',k)); 
     
    %Covariance
@@ -106,7 +107,7 @@ for k=47:nVec
    
    %Wait 
    while true
-       if mod(k-46,4)~=0 && k<nVec; break; end
+       if mod(k,4)~=0 && k<nVec; break; end
        flag_go=1;  
        for l=k:-1:1
            fname=fullfile(romsDir,'Ritz',sprintf('Member_%-.3d',l),'cov_tl.out');
@@ -123,7 +124,7 @@ for k=47:nVec
    
 end
 
-for k=47:nVec
+for k=1:nVec
     outDir=fullfile(romsDir,'Ritz',sprintf('Member_%-.3d',k)); 
     delete(fullfile(outDir,'Adv.nc')); 
 end
