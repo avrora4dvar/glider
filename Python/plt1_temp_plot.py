@@ -30,9 +30,9 @@ tOut=np.arange(tOut[0],tOut[1],2./24.)
 
 mat=[]
 mat.append(sio.loadmat('V:\ipasmans\\Exp40ana_avg.mat',squeeze_me=True,struct_as_record=False))
-mat.append(sio.loadmat('V:\ipasmans\Exp35for_avg.mat',squeeze_me=True,struct_as_record=False))
-mat.append(sio.loadmat('V:\ipasmans\Exp36for_avg.mat',squeeze_me=True,struct_as_record=False))
-mat.append(sio.loadmat('V:\ipasmans\Exp37for_avg.mat',squeeze_me=True,struct_as_record=False))
+mat.append(sio.loadmat('V:\ipasmans\Exp35ana_avg.mat',squeeze_me=True,struct_as_record=False))
+mat.append(sio.loadmat('V:\ipasmans\Exp36ana_avg.mat',squeeze_me=True,struct_as_record=False))
+mat.append(sio.loadmat('V:\ipasmans\Exp37ana_avg.mat',squeeze_me=True,struct_as_record=False))
 
 #Adjust times to Python
 for mat1 in mat:
