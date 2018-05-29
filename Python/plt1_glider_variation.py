@@ -27,6 +27,12 @@ fig=plt.figure(figsize=(7.4,8.92*.5))
 matplotlib.rcParams['font.family']='Arial'
 plt.rcParams.update({'font.size': 8})
 
+#plt.close('all')
+#fig=plt.figure(figsize=(9,4.5))
+#matplotlib.rcParams['font.family']='Arial'
+#plt.rcParams.update({'font.size': 12})
+
+
 #%% Load data
 
 mat=sio.loadmat('V:\ipasmans/glider_variation_ana.mat',squeeze_me=True,struct_as_record=False)
@@ -77,7 +83,8 @@ for val1 in mat.gliderS.rms:
 
 markers=['o','*','x',None]
 colors=['r','b','g','k']
-labels=['Glider Only','Glider T','No HFR,SSH','No SST,SSH']
+labels=['Glider Only','Glider T','Glider+SST','Glider+HFR']
+#labels=['Glider Only','Glider+SST','Glider+velocity']
 linewidths=[1,1,1,1]
 
 #SST
@@ -89,7 +96,7 @@ for (val1,label1,marker1,color1,linewidth1) in zip(mat.sst.rms,labels,markers,co
     pplot1=ax[0].plot(mat.t,val1,color=color1,marker=marker1,label=label1,markevery=3,linewidth=linewidth1,markersize=6)
     ax[0].set_ylim(0,7)
     ax[0].set_ylabel(u'Sea-surface temperature')
-    ax[0].annotate('a)',xy=(.02,.93),xytext=(.02,.93),textcoords='axes fraction',xycoords='axes fraction')
+    ax[0].annotate('a)',xy=(.02,.91),xytext=(.02,.91),textcoords='axes fraction',xycoords='axes fraction')
     
 
 ##SSH
@@ -105,26 +112,28 @@ for (val1,label1,marker1,color1,linewidth1) in zip(mat.uv.rms,labels,markers,col
     ax[1].plot(mat.t,val1,color=color1,marker=marker1,label=label1,markevery=3,linewidth=linewidth1,markersize=6)
     ax[1].set_ylabel(r'HFR velocity')
     ax[1].set_ylim(0,4)
-    ax[1].annotate('b)',xy=(.02,.93),xytext=(.02,.93),textcoords='axes fraction',xycoords='axes fraction')
+    ax[1].annotate('b)',xy=(.02,.9),xytext=(.02,.9),textcoords='axes fraction',xycoords='axes fraction')
 #glider T
 mat.gliderT.rms=mat.gliderT.rms[[1,2,4,5],:]/np.reshape(mat.gliderT.rms[0,:],(1,-1))
 for (val1,label1,marker1,color1,linewidth1) in zip(mat.gliderT.rms,labels,markers,colors,linewidths):
     ax[2].plot(mat.t,val1,color=color1,marker=marker1,label=label1,markevery=3,linewidth=linewidth1,markersize=6)
     ax[2].set_ylim(0,4)
     ax[2].set_ylabel(u'Glider temperature')
-    ax[2].annotate('c)',xy=(.02,.93),xytext=(.02,.93),textcoords='axes fraction',xycoords='axes fraction')
+    ax[2].annotate('c)',xy=(.02,.9),xytext=(.02,.9),textcoords='axes fraction',xycoords='axes fraction')
 #glider s
 mat.gliderS.rms=mat.gliderS.rms[[1,2,4,5],:]/np.reshape(mat.gliderS.rms[0,:],(1,-1))
 for (val1,label1,marker1,color1,linewidth1) in zip(mat.gliderS.rms,labels,markers,colors,linewidths):
     ax[3].plot(mat.t,val1,color=color1,marker=marker1,label=label1,markevery=3,linewidth=linewidth1,markersize=6)
     ax[3].set_ylim(0,4)
     ax[3].set_ylabel(r'Glider salinity ')
-    ax[3].annotate('d)',xy=(.02,.93),xytext=(.02,.93),textcoords='axes fraction',xycoords='axes fraction')
+    ax[3].annotate('d)',xy=(.02,.9),xytext=(.02,.9),textcoords='axes fraction',xycoords='axes fraction')
     
     
-   
-ax[3].legend(loc='upper left',bbox_to_anchor=(.05,.99),ncol=2,columnspacing=1)
+#%% Save 
+
+ax[3].legend(loc='upper left',bbox_to_anchor=(.05,1),ncol=2,columnspacing=1,framealpha=1)
 #fig.subplots_adjust(left=.06,right=.94)
 fig.tight_layout()
+#fig.savefig('rms_ratio_ana_student.png',dpi=500)
 fig.savefig('rms_ratio_ana.pdf')
 
