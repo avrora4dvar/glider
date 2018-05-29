@@ -17,7 +17,9 @@ import imp
 from matplotlib import animation
 from matplotlib import ticker
 import seawater as sw
+import matplotlib
 imp.reload(plotter)
+
 
 tOut=[datetime(2011,7,21,12,0,0),datetime(2011,8,10,12,0,0)]
 tOut=plotter.time2num(tOut)
@@ -44,12 +46,12 @@ obs=plotter.read_obslist()
 levelList=[1026.5]
 
 mat0=mat[-1]
-mat=mat[[1,2]]
-titleList=['Glider Only','Combined','Glider Only','Combined']
-labelList=['a)','b)','c)','d)']
+mat=mat[[1,0,2]]
+titleList=['Glider Only','Surface Only','Combined']
+labelList=['a)','b)','c)','d)','e)','f)']
 
 plt.close('all')
-fig=plt.figure(figsize=(5.61,8.92*.35))
+fig=plt.figure(figsize=(5.61,8.92*.75))
 matplotlib.rcParams['font.family']='Arial'
 plt.rcParams.update({'font.size': 8})
 
@@ -65,24 +67,27 @@ cgrey=plt.cm.get_cmap('Greys')
 #Plots
 def plotAx():
     ax=[]
-    for i in np.arange(0,4):
-        ax1=fig.add_subplot(1,4,i+1)
+    for i in np.arange(0,6):
+        ax1=fig.add_subplot(2,3,i+1)
         plotter.add_bathy(ax1)
         plotter.add_coast(ax1)
         plotter.layout_surface(ax1,xLim=[-129,-123],yLim=[41,49])
-        if i==0:
-            ax1.set_ylabel(r'Latitude')
-        ax1.set_xlabel(r'Longitude')
-        if i>0:
-            ax1.yaxis.set_major_locator(plt.NullLocator())
-        else:
-            ax1.yaxis.set_major_locator(ticker.MultipleLocator(2))
-            ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:.0f}'))
-        ax1.xaxis.set_major_locator(ticker.MultipleLocator(2))
-        ax1.xaxis.set_major_formatter(ticker.StrMethodFormatter('{x:.0f}'))
         
-        ax1.set_title(titleList[i])
-        t=ax1.annotate(labelList[i],xycoords='axes fraction',textcoords='axes fraction',xy=(.08,.9),xytext=(.08,.9))
+        ax1.yaxis.set_major_locator(ticker.MultipleLocator(2))
+        ax1.xaxis.set_major_locator(ticker.MultipleLocator(2))
+        if np.mod(i,3)==0:
+            ax1.set_ylabel(r'Latitude')
+            ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:.0f}'))
+        else:
+            ax1.yaxis.set_major_formatter(ticker.NullFormatter())
+        if i>=3:
+            ax1.set_xlabel(r'Longitude')
+            ax1.xaxis.set_major_formatter(ticker.StrMethodFormatter('{x:.0f}'))
+        else:
+            ax1.xaxis.set_major_formatter(ticker.NullFormatter())
+            ax1.set_title(titleList[i])
+            
+        t=ax1.annotate(labelList[i],xycoords='axes fraction',textcoords='axes fraction',xy=(.06,.94),xytext=(.06,.94))
         t.set_bbox(dict(facecolor='white', alpha=1, edgecolor='white'))
         ax.append(ax1)
         
@@ -130,7 +135,7 @@ def plotFrame(t,ax):
         
         #Colorbar
         #fig.subplots_adjust(top=1.2)
-        cax=fig.add_axes([.1,.14,.8,.02])
+        cax=fig.add_axes([.1,.07,.8,.02])
         cbar=fig.colorbar(cplot1,cax=cax,orientation='horizontal',spacing='proportional')
         cbar.set_ticks([tick1 for tick1 in np.arange(-60.0,60.1,20.)])
         cbar.formatter=ticker.FuncFormatter(lambda x,pos:'{:.1f}'.format(x))
@@ -150,9 +155,9 @@ def plotFrame(t,ax):
 #%%
 
 t=datetime(2011,7,21).toordinal()+.5
-plotFrame(t,ax[0:2])
-t=datetime(2011,8,8).toordinal()+.5
-plotFrame(t,ax[2:4])
+plotFrame(t,ax[0:3])
+t=datetime(2011,8,10).toordinal()+.49
+plotFrame(t,ax[3:6])
 
-fig.subplots_adjust(top=1.1)
+fig.subplots_adjust(top=1,hspace=-.1)
 fig.savefig('rho_surface_free.pdf')
