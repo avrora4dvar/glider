@@ -42,7 +42,7 @@ def read_grid_rho():
     """
     Read rho-grid from netcdf file
     """
-    nc=netCDF4.Dataset('grd_ow2km_r13lin_mix.nc','r',format='NETCDF3_classic')
+    nc=netCDF4.Dataset('V:/ipasmans/grd_ow2km_r13lin_mix.nc','r',format='NETCDF3_classic')
     grd={'lon':np.transpose(np.array(nc['lon_rho'][:,:])),
     'lat':np.transpose(np.array(nc['lat_rho'][:,:])),
     'mask':np.transpose(np.array(nc['mask_rho'])),
@@ -79,7 +79,7 @@ def add_coast(ax):
     """
     Add coastline
     """
-    coast=sio.loadmat('coastLine.mat',squeeze_me=True,struct_as_record=False)
+    coast=sio.loadmat('V:/ipasmans/coastLine.mat',squeeze_me=True,struct_as_record=False)
     coast=coast['coastLine']
     for c1 in coast:
         p=patch.Polygon(np.transpose([c1.Lon,c1.Lat]),closed=True,facecolor=(.5,.6,.5),edgecolor=None)
@@ -119,7 +119,10 @@ def add_uv2d(ax,lon,lat,u,v):
     lon=lon[::nx,::ny]; lat=lat[::nx,::ny]
     u=u[::nx,::ny]; v=v[::nx,::ny]
     
-    q=ax.quiver(lon,lat,u,v,scale_units='width',scale=1.*float(nx),angles='uv',color=(0,0,0),width=0.006,headwidth=6,headlength=9)
+    q1=ax.quiver(lon,lat,u,v,scale_units='width',scale=1.*float(nx),angles='uv',color=(0,0,0),width=0.006,headwidth=6,headlength=9)
+    q2=ax.quiver(-124.2,42.8,1,0,scale_units='width',scale=1.*float(nx),angles='uv',color=(0,0,0),width=0.006,headwidth=6,headlength=9,zorder=100)
+    q=(q1,q2)
+    
     return q
 
 def z_interp(zIn,valIn,zLim):
