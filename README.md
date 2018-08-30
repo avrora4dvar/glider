@@ -7,16 +7,17 @@
 2. Matlab\wind\plt_wind_point.m Python\plt1_wind.m
 3. Matlab\article_glider\cal_cov_z.m - Python\cov_z.py
 4. .. - Python\timeline.py
-5. Matlab\surface\cal_layer.m  - Python\plt1_vort_plot.py
-6. Matlab\surface\cal_layer.m - Python\plt1_enstrophy.py
-7. Matlab\surface\cal_layer.m - Python\plt1_temp_plot.py
-8. Matlab\article_glider\cal_cross_alongglider.m - Python\plt1_along_glider.py
-9. Matlab\cross\cal_crosslon.m - Python\plt1_cross_rho_plot.py
-10. Matlab\article_glider\cal_cross_z.m - Python\plt1_variance_rho.py
-11. Matlab\article_glider\plt_TSz.m - Python\plt1_rms.py
-12. Matlab\article_glider\cal_stat_long.m - Python\plt1_long_sample.py
-13. Matlab\article_glider\cal_rms_glider_variations.m - Python\plt1_glider_variation.py
-14. Matlab\article_glider\cal_rho_surface.m - Python\plt1_rho_surface_free_plot.py
+5. Matlab\plt_TSz_plume.m - Python\plt1_plume_profile.py
+6. Matlab\surface\cal_layer.m  - Python\plt1_vort_plot.py
+7. Matlab\surface\cal_layer.m - Python\plt1_enstrophy.py
+8. Matlab\surface\cal_layer.m - Python\plt1_temp_plot.py
+9. Matlab\article_glider\cal_cross_alongglider.m - Python\plt1_along_glider.py
+10. Matlab\cross\cal_crosslon.m - Python\plt1_cross_rho_plot.py
+11. Matlab\article_glider\cal_cross_z.m - Python\plt1_variance_rho.py
+12. Matlab\article_glider\plt_TSz.m - Python\plt1_rms.py
+13. Matlab\article_glider\cal_stat_long.m - Python\plt1_long_sample.py
+14. Matlab\article_glider\cal_rms_glider_variations.m - Python\plt1_glider_variation.py
+15. Matlab\article_glider\cal_rho_surface.m - Python\plt1_rho_surface_free_plot.py
 
 ## Table
 
